@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>CRiL On-line Interface (sockets version)</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+   
+    <!-- script src="http://code.jquery.com/jquery-latest.min.js"></script -->
+    <script src="jquery-latest.min.js"></script>
+
+    <script src="swfobject.js" type="text/javascript"></script>
+    <script src="jsocket.js" type="text/javascript"></script>
+    <script src="jsocket.advanced.js" type="text/javascript"></script>
+    <script src="functions.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+
+  </head>
+  <body onLoad='onLoad();' onUnload='unLoad();'>
+
+    <!-- Blocking div if a password is required -->
+    <div id='block'>
+      <h3 id='pwtxt'>Please Enter the Password to proceed</h3>
+      <input id='pwd' type='password' 
+	     onKeyUp='if (event.keyCode==13){sendPwd(this);}' />
+    </div>
+
+    <!-- Detector status -->
+    <div id='cardStat'>
+      <div id='datetimegps'>Awaiting GPS Info...</div>
+      <div id='thresholds' onClick='this.style.color="white";'>
+	Awaiting Threshold levels...
+      </div>
+      <div id='coincidence' onClick='this.style.color="white";'>
+	Awaiting coincidence...
+      </div>
+      <div id='counters'>Awaiting counter info...</div>
+    </div>
+
+    <!-- Page element for an embedded IRC server -->
+    <textarea id="chatterBox"
+	      type="textarea" rows="10" cols="60" title='Chatter Box'
+	      spellcheck='false'
+	      onKeyDown='javascript:interuptChat();'
+	      onKeyUp='javascript:chatKey(event);'>
+    </textarea>
+
+    <!-- Page element to display responses from the card server -->
+    <div id='container'>
+
+      <div id='daqHeader' class='daqHeader'>
+	<H4 id='serialNumber'>Getting DAQ Serial Number ...</H4>
+      </div>
+
+      <div id='daqLocation'>
+	<h4 id='location'>Getting CRD Location...</h4>
+      </div>
+
+      <textarea 
+	 id="daqBox" type="textarea" rows="20" cols="82" title='DAQ Terminal'
+	 spellcheck='false'
+	 onKeyDown='javascript:interuptStream();'
+	 onKeyUp='javascript:checkKey(event);'>
+      </textarea>
+    </div>
+
+    <!-- Page element that will become the swf socket to the card server -->
+    <div id="card_socket"></div> 
+
+    <!-- Page element that will become the socket to the chat server -->
+    <div id="chat_socket"></div>
+
+  </body>
+</html>

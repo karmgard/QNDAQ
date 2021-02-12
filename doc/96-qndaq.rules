@@ -1,0 +1,18 @@
+#
+#-------------------------------------------------------------------------#
+#  Serial-to-USB for the motor controller used on the CRiL Detector       #
+#  maps the controller to /dev/motor for consistant access                #
+#-------------------------------------------------------------------------#
+#
+KERNEL=="ttyUSB[0-9]" ATTRS{idVendor}=="067b" ATTRS{idProduct}=="2303" MODE="0666" SYMLINK+="motor"
+KERNEL=="ttyUSB[0-9]" ATTRS{idVendor}=="0403" ATTRS{idProduct}=="6001" MODE="0666" SYMLINK+="motor"
+
+#
+#-------------------------------------------------------------------------#
+# Naming scheme for udev on Linux systems. Takes the QN DAQ card and maps #
+# it to /dev/daq regardless of which ttyUSB? it appeared on, and sets the #
+# access mode to global read/write. Copy this file to your udev/rules.d/  #
+# directory and change the daqdevice line in qnserver.conf to /dev/daq    #
+#-------------------------------------------------------------------------#
+#
+KERNEL=="ttyUSB[0-9]" ATTRS{idVendor}=="10c4" ATTRS{idProduct}=="ea60" MODE="0666" SYMLINK+="daq"

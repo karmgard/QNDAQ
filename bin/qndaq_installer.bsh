@@ -1,0 +1,30 @@
+#!/bin/bash
+
+ptkill() {
+    local pid
+    pid=$(ps ax | grep $1 | grep -v grep | awk '{ print $1 }')
+    kill -15 $pid
+}
+
+if [ -x /usr/bin/curl ]; then
+  dlpgm=/usr/bin/curl
+elif [ -x /usr/bin/wget ]; then
+  dlpgm="/usr/bin/wget -O-";
+else
+  echo "Unable to find a downloader!"
+  echo "Please download the file manually at"
+  echo "http://loki.device.nd.edu/~karmgard/qndaq.tgz"
+  exit 1;
+fi
+
+$dlpgm http://loki.device.nd.edu/~karmgard/qndaq.tgz | tar -zxf -
+cd QNDAQ
+perl bin/setup.pl
+
+./cardServer.pl --daemon
+xterm -e 'telnet localhost 8979'
+ptkill cardServer
+
+mv ../$0 bin/
+
+exit 0;

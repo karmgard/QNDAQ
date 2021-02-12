@@ -1,0 +1,75 @@
+
+body {
+    background-color: lightgray;
+}
+
+div#container {
+    position:absolute;
+    bottom:5px;
+    left: 5px;
+}
+
+textarea#daqBox {
+    position: relative;
+    font-size: 1.25em;
+    overflow: auto;
+    border:2px solid #ff00ff;
+    display: none;
+}
+
+textarea#chatterBox {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    overflow: auto;
+    font-size: 0.75em;
+    border: 1px solid #00ff00;
+    display: none;
+}
+
+div#cardStat {
+    position: absolute;
+    left: 5px;
+    top:  5px;
+    color: white;
+    padding: 2px;
+    border: 1px solid yellow;
+}
+
+h4#serialNumber {
+    position:relative;
+    float: left;
+    top: 0.75em;
+    color: #aa0000;
+}
+h4#location {
+    position:relative;
+    float: right;
+    top: 0.75em;
+    color: #aa0000;
+}
+
+div#block {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    background-color:#ff00ff;
+    display: none;
+    z-index: 10;
+}
+
+h3#pwtxt {
+    position:absolute;
+    top:20%;
+    left:25%;
+}
+
+input#pwd { 
+    position:absolute;
+    top:33%;
+    left:30%;
+    width:25em;
+    z-index: 11;
+}

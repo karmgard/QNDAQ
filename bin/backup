@@ -1,0 +1,32 @@
+#!/bin/bash
+
+TARBALL="/home/karmgard/public_html/qndaq.tgz"
+ZIPFILE="/home/karmgard/public_html/qndaq.zip"
+CRILZIP="/home/karmgard/public_html/cril.tgz"
+
+if [ -e $TARBALL ]; then rm -f $TARBALL; fi
+if [ -e $ZIPFILE ]; then rm -f $ZIPFILE; fi
+if [ -e $CRILZIP ]; then rm -f $CRILZIP; fi
+
+cd /home/karmgard/Projects/physics/QNDAQ/
+rm -f `find . -name \*~`
+
+mv qnserver.conf ../
+mv qnserver.conf.def qnserver.conf
+
+cd ../
+tar -zcf $TARBALL QNDAQ/
+zip -qr $ZIPFILE QNDAQ/
+
+cd QNDAQ/
+mv qnserver.conf qnserver.conf.def
+mv ../qnserver.conf . -i
+
+cd /home/karmgard/public_html/CRiLControl
+cd /home/karmgard/public_html/cardtest/
+rm -f `find . -name \*~`
+
+cd ../
+tar -zcf $CRILZIP cardtest/ CRiLControl/
+
+exit 0;

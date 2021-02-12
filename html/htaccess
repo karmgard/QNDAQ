@@ -1,0 +1,8 @@
+Options +Includes +ExecCGI -Indexes +FollowSymLinks +SymLinksIfOwnerMatch
+
+<Files ~ (\.pl)>
+  SetHandler perl-script
+  PerlResponseHandler ModPerl::PerlRunPrefork
+  Options +ExecCGI 
+  PerlOptions +ParseHeaders
+</Files>
